@@ -82,8 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: 'Google',
                     isLogo: true,
                     onpress: () async {
-                      var cred = await AuthMethods().signInWithGoogle(context);
-                      if (cred != null) {
+                      bool cred = await AuthMethods().signInWithGoogle(context);
+                      if (cred) {
                         Navigator.pushNamed(context, '/home');
                       } else {
                         showSnackBar(context, 'Login Failed!!');
@@ -97,8 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: 'Facebook',
                     isLogo: true,
                     onpress: () async {
-                      var cred = await AuthMethods().signInWithFacebook();
-                      if (cred != null) {
+                      bool cred = await AuthMethods().signInWithFacebook();
+                      if (cred) {
                         Navigator.pushNamed(context, '/home');
                       } else {
                         showSnackBar(context, 'Login Failed!!');

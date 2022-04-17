@@ -40,7 +40,8 @@ dependencies:
   firebase_core: ^1.14.0
   firebase_auth: ^3.3.13
   google_sign_in: ^5.2.4
-  flutter_facebook_auth: '^3.5.0'
+  flutter_facebook_auth: ^4.2.1
+  uuid: ^3.0.6
   
 
 dev_dependencies:
