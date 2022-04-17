@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zoom_clone/screen/home.dart';
 import 'package:zoom_clone/screen/join_meeting/join_meeting.dart';
 import 'package:zoom_clone/screen/login_screen.dart';
+import 'package:zoom_clone/screen/signUp_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const HomePage(),
         '/join-meeting': (context) => const JoinMeetingScreen(),
+        '/register': (context) => const SignUpScreen(),
       },
-      initialRoute: '/home',
+      initialRoute: '/login',
     );
   }
 }
