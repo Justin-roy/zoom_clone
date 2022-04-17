@@ -56,6 +56,7 @@ class AuthMethods {
     return false;
   }
 
+  // this upload sign in details
   Future<String> uploadUserDetails({
     required String username,
     required String email,
@@ -67,6 +68,26 @@ class AuthMethods {
       _firestore.collection('Users').doc(postId).set({
         'username': username,
         'email': email,
+      });
+      res = 'Success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
+
+  // this will upload zoom details
+  Future<String> uploadZoomDetails({
+    required String username,
+    required String meetingId,
+  }) async {
+    String res = 'some error occured';
+    try {
+      // Now All Data Uploading to firebase
+      String postId = const Uuid().v1();
+      _firestore.collection('Zoom').doc(postId).set({
+        'username': username,
+        'meetingId': meetingId,
       });
       res = 'Success';
     } catch (err) {

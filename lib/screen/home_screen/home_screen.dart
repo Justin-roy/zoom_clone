@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:zoom_clone/resource/auth_methods.dart';
 import 'package:zoom_clone/resource/jitsi_meet.dart';
 import 'package:zoom_clone/widget/home_icons.dart';
 
@@ -15,14 +17,20 @@ class HomePageScreen extends StatefulWidget {
 
 class _HomePageScreenState extends State<HomePageScreen> {
   final _textController = TextEditingController();
-  _createNewMeeting() {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  _createNewMeeting() async {
     Random randomId = Random();
     String meetingId = randomId.nextInt((10000000) + 10000000).toString();
     ZoomMeet _zoom = ZoomMeet();
+    await AuthMethods().uploadZoomDetails(
+      username: _auth.currentUser!.displayName!,
+      meetingId: meetingId,
+    );
     _zoom.createMeeting(
       roomName: meetingId,
       isAudioMuted: true,
       isVideoMuted: true,
+      username: _auth.currentUser!.displayName!,
     );
   }
 

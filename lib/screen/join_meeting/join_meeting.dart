@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:zoom_clone/resource/jitsi_meet.dart';
 import 'package:zoom_clone/widget/join_option.dart';
 
@@ -14,12 +16,20 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
   late final _nameController;
   bool isAudioMuted = true;
   bool isVideoMuted = true;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   void initState() {
     _meetingIdController = TextEditingController();
-    _nameController = TextEditingController(text: 'Justin Roy');
+    _nameController =
+        TextEditingController(text: _auth.currentUser!.displayName!);
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    JitsiMeet.closeMeeting();
+    super.dispose();
   }
 
   @override

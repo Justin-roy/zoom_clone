@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zoom_clone/resource/auth_methods.dart';
@@ -18,6 +17,25 @@ class _LoginScreenState extends State<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  _loginUser(String _email, String _password) async {
+    UserCredential cred = await _auth.signInWithEmailAndPassword(
+        email: _email, password: _password);
+    if (cred.user != null) {
+      await AuthMethods().uploadUserDetails(
+          username: _auth.currentUser!.displayName!, email: _email);
+      setState(() {
+        _isLoading = false;
+      });
+      return true;
+    }
+    setState(() {
+      _isLoading = false;
+    });
+    return false;
+  }
+
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,17 +73,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _password,
                 message: 'Please enter password',
               ),
-              CustomButton(
-                color: const Color(0xff0165ff),
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-                text: 'Login',
-                onpress: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, '/home');
-                  }
-                },
-              ),
+              _isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : CustomButton(
+                      color: const Color(0xff0165ff),
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      text: 'Login',
+                      onpress: () async {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        if (_formKey.currentState!.validate()) {
+                          bool cred =
+                              await _loginUser(_email.text, _password.text);
+                          if (cred) {
+                            Navigator.pushNamed(context, '/home');
+                          } else {
+                            showSnackBar(context, 'Login Failed!!');
+                          }
+                        }
+                      },
+                    ),
               const Center(
                 child: Text(
                   'Or, login with...',
