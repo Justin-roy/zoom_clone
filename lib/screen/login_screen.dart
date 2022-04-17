@@ -96,7 +96,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 110,
                     text: 'Facebook',
                     isLogo: true,
-                    onpress: () {},
+                    onpress: () async {
+                      var cred = await AuthMethods().signInWithFacebook();
+                      if (cred != null) {
+                        Navigator.pushNamed(context, '/home');
+                      } else {
+                        showSnackBar(context, 'Login Failed!!');
+                      }
+                    },
                     icon: 'assets/images/facebook_svg.svg',
                   ),
                 ],
