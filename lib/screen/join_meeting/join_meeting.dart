@@ -40,7 +40,7 @@ class _JoinMeetingScreenState extends State<JoinMeetingScreen> {
         centerTitle: true,
         leading: TextButton(
           onPressed: () {
-            const BackButton();
+            Navigator.pop(context);
           },
           child: const Text(
             'Cancel',

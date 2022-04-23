@@ -17,21 +17,28 @@ class _LoginScreenState extends State<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  //login
   final FirebaseAuth _auth = FirebaseAuth.instance;
   _loginUser(String _email, String _password) async {
-    UserCredential cred = await _auth.signInWithEmailAndPassword(
-        email: _email, password: _password);
-    if (cred.user != null) {
-      await AuthMethods().uploadUserDetails(
-          username: _auth.currentUser!.displayName!, email: _email);
+    try {
+      UserCredential cred = await _auth.signInWithEmailAndPassword(
+          email: _email, password: _password);
+      if (cred.user != null) {
+        await AuthMethods().uploadUserDetails(username: 'dummy', email: _email);
+        setState(() {
+          _isLoading = false;
+        });
+        return true;
+      }
       setState(() {
         _isLoading = false;
       });
-      return true;
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      showSnackBar(context, e.message.toString());
     }
-    setState(() {
-      _isLoading = false;
-    });
     return false;
   }
 
