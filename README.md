@@ -1,16 +1,30 @@
-# zoom_clone
+# Zoom Clone
 
-A new Flutter project.
+Made With Flutter & Dart
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Authors
 
-A few resources to get you started if this is your first Flutter project:
+- [@Justin Roy](https://www.linkedin.com/in/justin-roy-4817551ba/)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+<img width="300" src="https://github.com/Justin-roy/zoom_clone/blob/master/ss/1.jpg">  .
+<img width="300" src="https://github.com/Justin-roy/zoom_clone/blob/master/ss/2.jpg">  .
+<img width="300" src="https://github.com/Justin-roy/zoom_clone/blob/master/ss/3.jpg">  .
+<img width="300" src="https://github.com/Justin-roy/zoom_clone/blob/master/ss/4.jpg">  .
+<img width="300" src="https://github.com/Justin-roy/zoom_clone/blob/master/ss/5.jpg">  
+
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Support
+
+For support,give a star ⭐ to repo.
+
+
+
