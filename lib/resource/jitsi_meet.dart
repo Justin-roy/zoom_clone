@@ -4,8 +4,8 @@ import 'package:jitsi_meet/jitsi_meet.dart';
 class ZoomMeet {
   void createMeeting({
     required String roomName,
-    required bool isAudioMuted,
-    required bool isVideoMuted,
+    bool isAudioMuted = true,
+    bool isVideoMuted = true,
     String username = '',
   }) async {
     try {

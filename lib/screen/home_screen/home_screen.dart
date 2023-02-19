@@ -28,8 +28,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
     );
     _zoom.createMeeting(
       roomName: meetingId,
-      isAudioMuted: true,
-      isVideoMuted: true,
       username: _auth.currentUser!.displayName!,
     );
   }
